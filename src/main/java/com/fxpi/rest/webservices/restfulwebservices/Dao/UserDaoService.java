@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserDaoService {
@@ -33,6 +35,19 @@ public class UserDaoService {
     public Users findById(int id) throws NoSuchFieldException {
         return userList.stream().filter(user -> (user.getId() == id)).findAny().orElse(null);
 
+    }
+
+    public Users deleteById(int id) {
+//        boolean newUserList = userList.stream().filter(user -> (user.getId() == id)).collect(Collectors.toList()).removeIf(users -> (users.getId() == id));
+        Iterator<Users> usersIterator = userList.iterator();
+        while (usersIterator.hasNext()) {
+            Users user = usersIterator.next();
+            if (user.getId() == id) {
+                usersIterator.remove();
+                return user;
+            }
+        }
+        return null;
     }
 
 }

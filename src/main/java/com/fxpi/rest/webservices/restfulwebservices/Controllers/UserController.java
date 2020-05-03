@@ -42,4 +42,12 @@ public class UserController {
 
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) throws NoSuchFieldException {
+        Users users = userDaoService.deleteById(id);
+        if (users == null) {
+            throw new UserNotFoundException("id " + id);
+        }
+    }
 }
