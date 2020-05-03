@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/users/save")
-    public ResponseEntity<Object> createUser(@RequestBody Users users) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody Users users) {
         Users savedUser = userDaoService.saveUser(users);
 
         // this is the how we can form the new URI from the current request

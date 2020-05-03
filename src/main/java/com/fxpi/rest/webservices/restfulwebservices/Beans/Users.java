@@ -1,13 +1,17 @@
 package com.fxpi.rest.webservices.restfulwebservices.Beans;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Users {
 
     private Integer id;
 
+    @Size(min = 2, message = "Name should have atleast two characters")
     private String name;
 
+    @Past
     private Date birthDate;
 
     public Users(Integer id, String name, Date birthDate) {
