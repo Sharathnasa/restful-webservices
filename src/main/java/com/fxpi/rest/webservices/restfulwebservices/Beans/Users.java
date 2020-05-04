@@ -3,13 +3,14 @@ package com.fxpi.rest.webservices.restfulwebservices.Beans;
 //import io.swagger.annotations.ApiModel;
 //import io.swagger.annotations.ApiModelProperty;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 // this one is for swagger
 //@ApiModel(description = "All details about the user.")
@@ -28,7 +29,10 @@ public class Users {
 //    @ApiModelProperty(notes = "Birth date should be in past")
     private Date birthDate;
 
-    protected Users(){
+    @OneToMany(mappedBy = "users", targetEntity=Posts.class)
+    private List<Posts> posts;
+
+    protected Users() {
 
     }
 
@@ -36,6 +40,7 @@ public class Users {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
+
     }
 
     public Date getBirthDate() {
@@ -54,7 +59,6 @@ public class Users {
         this.name = name;
     }
 
-    @Id
     public Integer getId() {
         return id;
     }
@@ -72,4 +76,11 @@ public class Users {
                 '}';
     }
 
+    public List<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
+    }
 }
