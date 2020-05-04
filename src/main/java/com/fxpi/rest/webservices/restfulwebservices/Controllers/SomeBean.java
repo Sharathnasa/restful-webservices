@@ -1,14 +1,18 @@
 package com.fxpi.rest.webservices.restfulwebservices.Controllers;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import net.minidev.json.annotate.JsonIgnore;
 
+//dynamic filtering
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
 
     private String field1;
 
     private String field2;
 
-    @JsonIgnore
+    //static way of filtering
+//    @JsonIgnore
     private String field3;
 
     public SomeBean(String field1, String field2, String field3) {
